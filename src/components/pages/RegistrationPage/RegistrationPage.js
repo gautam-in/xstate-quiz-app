@@ -1,13 +1,8 @@
 import React from 'react';
 import RegistrationForm from '../../organisms/RegistrationForm';
-import Container from '../../atoms/Container';
 
 const RegistrationPage = () => {
-  return (
-    <Container>
-      <RegistrationForm />
-    </Container>
-  );
+  return <RegistrationForm />;
 };
 
 export default RegistrationPage;
