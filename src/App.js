@@ -1,18 +1,17 @@
 import React from 'react';
-import styledNormalize from 'styled-normalize';
-import { createGlobalStyle } from 'styled-components';
-
-const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:400,700,900&display=swap');
-  ${styledNormalize}
-  body{
-    background: #eeeeee;
-    font-family: 'Nunito Sans', sans-serif;
-  }
-`;
+import Header from './components/molecules/Header';
+import GlobalStyle from './components/atoms/GlobalStyle';
+import RegistrationPage from './components/pages/RegistrationPage';
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <GlobalStyle />
+      <Header />
+      {/* 🔥 Toggle Between Pages */}
+      <RegistrationPage />
+    </>
+  );
 }
 
 export default App;
