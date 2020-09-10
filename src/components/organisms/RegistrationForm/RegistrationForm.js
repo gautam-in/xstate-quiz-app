@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, FieldGroup, Label, Input } from '../../atoms/Form';
+import { StyledForm, FieldGroup, Label, Input } from '../../atoms/Form';
 import Button from '../../atoms/Button';
 import Alert from '../../atoms/Alert';
 import { companyProps, emailProps, nameProps } from './RegistrationForm.config';
@@ -12,7 +12,7 @@ import {
 
 const RegistrationForm = () => {
   return (
-    <Form
+    <StyledForm
       onSubmit={() => {
         //🔥 Send form data from here
       }}
@@ -23,7 +23,7 @@ const RegistrationForm = () => {
         Answer these questions on Front-end / React and win cool prizes.
       </RegistrationDescription>
       <FieldGroup>
-        <Label for={nameProps.id}>{nameProps.label}</Label>
+        <Label htmlFor={nameProps.id}>{nameProps.label}</Label>
         <Input
           {...nameProps}
           aria-describedby="fullname-error"
@@ -37,7 +37,7 @@ const RegistrationForm = () => {
       </ErrorMessage>
 
       <FieldGroup>
-        <Label for={emailProps.id}>{emailProps.label}</Label>
+        <Label htmlFor={emailProps.id}>{emailProps.label}</Label>
         <Input
           {...emailProps}
           aria-describedby="email-error"
@@ -51,7 +51,7 @@ const RegistrationForm = () => {
       </ErrorMessage>
 
       <FieldGroup>
-        <Label for={companyProps.id}>{companyProps.label}</Label>
+        <Label htmlFor={companyProps.id}>{companyProps.label}</Label>
         <Input
           aria-describedby="company-error"
           {...companyProps}
@@ -63,8 +63,13 @@ const RegistrationForm = () => {
       <ErrorMessage id="company-error" aria-live="assertive">
         {/*🔥 Error message for company validation */}
       </ErrorMessage>
-      <Button type="submit">Register</Button>
-    </Form>
+      <Button
+        type="submit"
+        // 🔥 Handle loading state when submitting form
+      >
+        Register
+      </Button>
+    </StyledForm>
   );
 };
 

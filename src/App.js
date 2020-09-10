@@ -1,16 +1,20 @@
 import React from 'react';
 import GlobalStyle from './components/atoms/GlobalStyle';
-import RegistrationPage from './components/pages/RegistrationPage';
 import Layout from './components/molecules/Layout';
-import ThankYouPage from './components/pages/ThankYouPage/ThankYouPage';
+import RegistrationPage from './components/pages/RegistrationPage';
+import QuizPage from './components/pages/QuizPage';
+import ThankYouPage from './components/pages/ThankYouPage';
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      {/* 🔥 Toggle Between Pages */}
       <Layout>
-        {/* <RegistrationPage /> */}
+        {/* 🔥 Handle loading registration page */}
+        <RegistrationPage />
+        {/* 🔥 Handle loading Quiz page */}
+        <QuizPage />
+        {/* 🔥 Handle loading ThankYou page */}
         <ThankYouPage />
       </Layout>
     </>
