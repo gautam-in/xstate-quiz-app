@@ -1,7 +1,7 @@
 /*
  🔥  States for this machine:
-  - init
   - register
+    - init
     - validate
     - validationError
     - pending
