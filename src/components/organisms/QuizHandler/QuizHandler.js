@@ -4,32 +4,58 @@ import Box from '../../atoms/Box';
 import Question from '../../molecules/Question';
 import QuestionOptions from '../../molecules/QuestionOptions';
 import Button from '../../atoms/Button';
+import { useService } from '@xstate/react';
+import { QuizMachineService } from '../../../machines/QuizMachine';
 
-const QuizHandler = () => (
-  <Form>
-    <Box>
-      {/* 🔥 Update the question with information dynamically */}
-      <Question
-        label={'This is the question'}
-        currentQuestionCount={2}
-        totalQuestionsCount={3}
-      />
-      <QuestionOptions
-        options={['a', 'b', 'c', 'd']}
-        onChange={(event) => {
-          // 🔥 Handle registering response here
-        }}
-      />
-    </Box>
-    <Button
-      type="submit"
-      onClick={(event) => {
-        // 🔥 Handle form next and final submission here
-      }}
-    >
-      Next
-    </Button>
-  </Form>
-);
+const QuizHandler = () => {
+  const [state, send] = useService(QuizMachineService);
+  const currentQuestion =
+    state.context.questions.length > 0
+      ? state.context.questions[state.context.currentQuestion]
+      : null;
+  return (
+    <>
+      {currentQuestion ? (
+        <Form>
+          <Box>
+            {/* 🔥 Update the question with information dynamically */}
+            <Question
+              label={currentQuestion.question}
+              currentQuestionCount={state.context.currentQuestion + 1}
+              totalQuestionsCount={state.context.totalQuestions}
+            />
+            <QuestionOptions
+              options={currentQuestion.options}
+              selected={
+                state.context.response[currentQuestion.questionID] || ''
+              }
+              onChange={(e) => {
+                // 🔥 Handle registering response here
+                send({
+                  type: 'SELECT',
+                  data: {
+                    id: currentQuestion.questionID,
+                    selected: e.target.id,
+                  },
+                });
+              }}
+            />
+          </Box>
+          <Button
+            type="submit"
+            disabled={state.matches('answering')}
+            onClick={(e) => {
+              // 🔥 Handle form next and final submission here
+              e.preventDefault();
+              send('NEXT');
+            }}
+          >
+            Next
+          </Button>
+        </Form>
+      ) : null}
+    </>
+  );
+};
 
 export default QuizHandler;

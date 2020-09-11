@@ -4,11 +4,11 @@ import Layout from './components/molecules/Layout';
 import RegistrationPage from './components/pages/RegistrationPage';
 import QuizPage from './components/pages/QuizPage';
 import ThankYouPage from './components/pages/ThankYouPage';
-import QuizMachine from './machines/QuizMachine';
-import { useMachine } from '@xstate/react';
+import {QuizMachineService} from './machines/QuizMachine';
+import { useService } from '@xstate/react';
 
 function App() {
-  const [state] = useMachine(QuizMachine, { devTools: true });
+  const [state] = useService(QuizMachineService);
   return (
     <>
       <GlobalStyle />
@@ -21,7 +21,6 @@ function App() {
 
         {/* 🔥 Handle loading ThankYou page */}
         {state.matches('result') ? <ThankYouPage /> : null}
-        <ThankYouPage />
       </Layout>
     </>
   );
