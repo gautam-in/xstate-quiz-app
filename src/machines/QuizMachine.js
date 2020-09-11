@@ -1,16 +1,14 @@
 /*
  🔥  States for this machine:
   - register
-    - init
-    - validate
-    - validationError
-    - pending
+    - editing
+    - submitting
+    - success
     - error
   - quiz
-    - pending
+    - fetching
     - fetchError
-    - unselected
-    - selected
+    - answering
     - submitting
     - error
   - result
