@@ -1,14 +1,17 @@
 /*
  🔥  States for this machine:
   - init
-  - validateRegistration
-  - validationError
-  - submitting
-  - fetchingQuiz
-  - fetchQuizError
+  - register
+    - validate
+    - validationError
+    - pending
+    - error
   - quiz
+    - pending
+    - fetchError
     - unselected
     - selected
     - submitting
+    - error
   - result
 */
