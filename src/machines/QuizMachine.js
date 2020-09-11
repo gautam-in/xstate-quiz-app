@@ -24,9 +24,13 @@ const QuizMachine = Machine({
     register: {
       initial: 'init',
       states: {
-        init: {},
-        validate: {},
-        validationError: {},
+        init: {
+          SUBMIT: 'validate',
+        },
+        validate: {
+          SUCCESS: 'pending',
+          ERROR: 'init',
+        },
         pending: {},
         error: {},
       },

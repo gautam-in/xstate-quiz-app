@@ -8,17 +8,19 @@ import QuizMachine from './machines/QuizMachine';
 import { useMachine } from '@xstate/react';
 
 function App() {
-  const [state, send] = useMachine(QuizMachine);
+  const [state] = useMachine(QuizMachine, { devTools: true });
   return (
     <>
-      {/* {state.matches('')} */}
       <GlobalStyle />
       <Layout>
         {/* 🔥 Handle loading registration page */}
-        <RegistrationPage />
+        {state.matches('register') ? <RegistrationPage /> : null}
+
         {/* 🔥 Handle loading Quiz page */}
-        <QuizPage />
+        {state.matches('quiz') ? <QuizPage /> : null}
+
         {/* 🔥 Handle loading ThankYou page */}
+        {state.matches('result') ? <ThankYouPage /> : null}
         <ThankYouPage />
       </Layout>
     </>
