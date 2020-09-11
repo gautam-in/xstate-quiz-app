@@ -6,4 +6,6 @@ export const StyledBox = styled.div`
   border-radius: 5px;
   box-shadow: 0 2px 5px #ccc;
   padding: 1.25rem;
+
+  text-align: ${(props) => (props.center ? 'center' : 'left')};
 `;
